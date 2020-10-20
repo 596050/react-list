@@ -112,20 +112,3 @@ type CustomThemeType = {
     extraLarge: string;
   };
 };
-
-interface Dictionary<T> {
-  [index: string]: T;
-}
-
-interface Array<T> {
-  findReverse<S extends T>(
-    predicate: (this: void, value: T, index: number, obj: T[]) => value is S,
-    thisArg?: any
-  ): S | undefined;
-  findReverse(
-    predicate: (value: T, index: number, obj: T[]) => unknown,
-    thisArg?: any
-  ): T | undefined;
-}
-
-type ValueOf<T> = T[keyof T];
