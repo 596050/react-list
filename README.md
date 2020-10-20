@@ -1,44 +1,38 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Start steps:
 
-## Available Scripts
+- Enter the root directory
 
-In the project directory, you can run:
+# 1. Provide .env files:
 
-### `yarn start`
+Change file name of .env-example to .env with
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- REACT_APP_SERVICE_BASE_URL=https://api.github.com/graphql
+- PORT=3000
+- REACT_APP_GITHUB_TOKEN=[REPLACE_WITH_TOKEN:https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token]
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Get github access token and set equal to REACT_APP_GITHUB_TOKEN
 
-### `yarn test`
+# 2. Install and run at `localhost:3000`:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## For running client locally run:
 
-### `yarn build`
+- yarn && yarn start
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## For dockerization:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- docker build -f Dockerfile -t react-list .
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- docker run \
+  -it \
+  --rm \
+  -v \${PWD}:/app \
+  -v /app/node_modules \
+  -p 3000:3001 \
+  -e CHOKIDAR_USEPOLLING=true \
+  react-list
 
-### `yarn eject`
+# 3. To run tests:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+For cypress end to end tests
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- yarn test:e2e
