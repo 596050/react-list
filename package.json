@@ -52,6 +52,7 @@
     "clean:modules": "rm yarn.lock && rm -rf node_modules",
     "dev:init": "yarn clean:modules && yarn && yarn start",
     "cypress:open": "cypress open",
+    "test:e2e": "cypress run --headed",
     "lint": "yarn eslint -c .eslintrc.json --ext d.ts,ts,tsx,js ./src/"
   },
   "eslintConfig": {
